@@ -1,13 +1,15 @@
 require 'spec_helper'
-require 'gilded_rose'
+
 
 describe GildedRose do
 
+  subject(:gildedrose) { described_class.new(items) }
+
+  let(:items) { [Item.new("foo", 0, 0)] }
+
   describe "#update_quality" do
     it "does not change the name" do
-      items = [Item.new("foo", 0, 0)]
-      GildedRose.new(items).update_quality()
-      expect(items[0].name).to eq "fixme"
+      expect(items[0].name).to eq "foo"
     end
   end
 

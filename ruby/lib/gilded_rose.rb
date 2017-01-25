@@ -18,23 +18,20 @@ class GildedRose
     end
   end
 
-  def increase_quality(item)
+  def increase_quality(item) # quality can only increase if quality more than 50
     return item
   end
 
-  def decrease_quality(item)
-    if item.quality > 0
-      return has_quality(item)
-    end
+  def decrease_quality(item) # quality can only decrease if quality is above 0
+    raise "Quality cannot be decreased: quality of items cannot be negavtive" unless item.quality > 0
+    return new_quality(item)
   end
 
-  def has_quality(item)
+  def new_quality(item)
     if item.name != "Sulfuras, Hand of Ragnaros"
       return item.quality = item.quality - 1
     end
   end
-
-
 
   def update_quality1(item)
       if item.name != "Aged Brie" and item.name != "Backstage passes to a TAFKAL80ETC concert"

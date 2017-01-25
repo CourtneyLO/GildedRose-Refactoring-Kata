@@ -15,8 +15,21 @@ describe GildedRose do
     end
   end
 
+  describe "#update_quality" do
+    it "should return the item to increase_quality" do
+      item = items[0]
+      gildedrose.split_items
+      expect(gildedrose.update_quality(item)).to eq(gildedrose.increase_quality(item))
+    end
 
-
+    it "should return the item to decrease_quantity" do
+      item = items[1]
+      gildedrose.split_items
+      expect(gildedrose.update_quality(item)).to eq(gildedrose.decrease_quality(item))
+    end
   end
+
+
+
 
 end

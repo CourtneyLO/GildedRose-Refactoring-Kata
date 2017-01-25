@@ -10,6 +10,24 @@ class GildedRose
     end
   end
 
+  def update_quality(item)
+    if item.name != "Aged Brie" and item.name != "Backstage passes to a TAFKAL80ETC concert"
+      return increase_quality(item)
+    else
+      return decrease_quality(item)
+    end
+  end
+
+  def increase_quality(item)
+    return item
+  end
+
+  def decrease_quality(item)
+    return item
+  end
+
+
+
   def update_quality1(item)
       if item.name != "Aged Brie" and item.name != "Backstage passes to a TAFKAL80ETC concert"
         if item.quality > 0

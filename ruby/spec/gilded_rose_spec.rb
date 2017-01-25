@@ -5,13 +5,14 @@ describe GildedRose do
 
   subject(:gildedrose) { described_class.new(items) }
 
-  let(:items) { [Item.new("foo", 0, 10),
+  let(:items) { [Item.new("foo", 4, 10),
                  Item.new("Apples", 2, 0),
-                 Item.new("Aged Brie", 1, 0),
+                 Item.new("Aged Brie", 3, 0),
                  Item.new("Backstage passes to a TAFKAL80ETC concert", 12, 20),
                  Item.new("Backstage passes to a TAFKAL80ETC concert", 9, 20),
                  Item.new("Backstage passes to a TAFKAL80ETC concert", 5, 20),
-                 Item.new("Sulfuras, Hand of Ragnaros", 0, 20)
+                 Item.new("Sulfuras, Hand of Ragnaros", 0, 20),
+                 Item.new("popcorn", 0, 10)
                  ] }
 
   describe '#item' do
@@ -80,12 +81,17 @@ describe GildedRose do
     # it "should decrease  "
   end
 
-  describe "#split product" do
+  describe "#quality_dividing_items" do
     it "should determine if the product loses quality over time" do
       item = items[6]
       gildedrose.quality_dividing_items(item)
       expect(item.sell_in).to eq(0)
     end
-  end
 
+    it "should decrease a product quality by a further point if it has passed the sell by date" do
+      item = items[7]
+      gildedrose.quality_dividing_items(item)
+      expect(item.quality).to eq(8)
+    end
+  end
 end

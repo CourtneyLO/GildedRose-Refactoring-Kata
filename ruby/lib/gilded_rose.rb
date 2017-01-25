@@ -20,11 +20,20 @@ class GildedRose
 
   def update_sell_in(item)
     item.sell_in -=  1
+    return sell_in_date(item)
+  end
+
+  def sell_in_date(item)
+    if item.sell_in > 0
       return update_quality(item)
+    else
+      return decrease_sell_in(item)
+    end
   end
 
   def decrease_sell_in(item)
-      item.sell_in -= 1
+      item.quality -= 1
+      return update_quality(item)
   end
 
   def update_quality(item)

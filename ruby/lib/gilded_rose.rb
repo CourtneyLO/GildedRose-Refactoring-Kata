@@ -6,11 +6,11 @@ class GildedRose
 
   def split_items
     @items.each do |item|
-      split_products(item)
+      quality_dividing_items(item)
     end
   end
 
-  def split_products(item)
+  def quality_dividing_items(item)
     if item.name == "Sulfuras, Hand of Ragnaros"
       return item.sell_in
     else
@@ -20,7 +20,7 @@ class GildedRose
 
   def update_sell_in(item)
     item.sell_in -=  1
-       return decrease_sell_in(item)
+      return update_quality(item)
   end
 
   def decrease_sell_in(item)

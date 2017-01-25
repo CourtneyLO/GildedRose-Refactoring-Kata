@@ -19,7 +19,7 @@ class GildedRose
   end
 
   def increase_quality(item) # quality can only increase if quality more than 50
-    return higher_quality(item) 
+    return higher_quality(item)
   end
 
   def decrease_quality(item) # quality can only decrease if quality is above 0
@@ -30,6 +30,17 @@ class GildedRose
     if item.name != "Sulfuras, Hand of Ragnaros"
       return item.quality = item.quality - 1
     end
+  end
+
+  def higher_quality(item)
+    return item.quality = item.quality + 1 # Aged Brie stops here - only increases by one per run
+      if item.name == "Backstage passes to a TAFKAL80ETC concert"
+        return backstage_item(item)
+      end
+  end
+
+  def backstage_item(item)
+    return item.quality
   end
 
   def update_quality1(item)

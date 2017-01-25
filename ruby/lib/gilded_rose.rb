@@ -6,8 +6,25 @@ class GildedRose
 
   def split_items
     @items.each do |item|
-      update_quality(item)
+      split_products(item)
     end
+  end
+
+  def split_products(item)
+    if item.name == "Sulfuras, Hand of Ragnaros"
+      return item.sell_in
+    else
+      return update_sell_in(item)
+    end
+  end
+
+  def update_sell_in(item)
+    item.sell_in -=  1
+       return decrease_sell_in(item)
+  end
+
+  def decrease_sell_in(item)
+      item.sell_in -= 1
   end
 
   def update_quality(item)
@@ -19,7 +36,7 @@ class GildedRose
   end
 
   def increase_quality(item) # quality can only increase if quality more than 50
-    return higher_quality(item)
+    return higher_quality(item) if item.quality < 50
   end
 
   def decrease_quality(item) # quality can only decrease if quality is above 0
@@ -28,7 +45,7 @@ class GildedRose
 
   def less_quality(item)
     if item.name != "Sulfuras, Hand of Ragnaros"
-      return item.quality -= 1
+      return item.quality -= 1 # item decreases in quality by one
     end
   end
 
@@ -45,16 +62,20 @@ class GildedRose
       return sell_in_five(item)
     else
       return sell_in_ten(item)
-    end 
+    end
   end
 
-  def sell_in_ten(item)
+  def sell_in_ten(item) # concert tickets increase less than 11 days
     return item.quality += 2
   end
 
-  def sell_in_five(item)
+  def sell_in_five(item) # concert tickets increase less then 6 days
     return item.quality += 3
   end
+
+
+
+
 
   def update_quality1(item)
       if item.name != "Aged Brie" and item.name != "Backstage passes to a TAFKAL80ETC concert"
@@ -87,7 +108,7 @@ class GildedRose
       if item.name != "Sulfuras, Hand of Ragnaros"
         item.sell_in = item.sell_in - 1
       end
-      if item.sell_in < 0
+      if item.sell_in < 0 # after sell_in date
         if item.name != "Aged Brie"
           if item.name != "Backstage passes to a TAFKAL80ETC concert"
             if item.quality > 0

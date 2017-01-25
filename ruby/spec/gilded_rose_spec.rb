@@ -6,11 +6,12 @@ describe GildedRose do
   subject(:gildedrose) { described_class.new(items) }
 
   let(:items) { [Item.new("foo", 0, 10),
-                 Item.new("Apples", 1, 0),
+                 Item.new("Apples", 2, 0),
                  Item.new("Aged Brie", 1, 0),
                  Item.new("Backstage passes to a TAFKAL80ETC concert", 12, 20),
                  Item.new("Backstage passes to a TAFKAL80ETC concert", 9, 20),
-                 Item.new("Backstage passes to a TAFKAL80ETC concert", 5, 20)
+                 Item.new("Backstage passes to a TAFKAL80ETC concert", 5, 20),
+                 Item.new("Sulfuras, Hand of Ragnaros", 0, 20)
                  ] }
 
   describe '#item' do
@@ -68,4 +69,24 @@ describe GildedRose do
       end
     end
   end
+
+  describe "#updating_sell_in" do
+    it "should decrease the sell_in number by 1" do
+      item = items[1]
+      gildedrose.update_sell_in(item)
+
+      expect(item.sell_in).to eq(0)
+    end
+
+    # it "should decrease  "
+  end
+
+  describe "#determing product" do
+    it "should determine if the product loses quality over time" do
+      item = items[6]
+      gildedrose.split_products(item)
+      expect(item.sell_in).to eq(0)
+    end
+  end
+
 end

@@ -28,25 +28,32 @@ class GildedRose
 
   def less_quality(item)
     if item.name != "Sulfuras, Hand of Ragnaros"
-      return item.quality = item.quality - 1
+      return item.quality -= 1
     end
   end
 
   def higher_quality(item)
-    return item.quality = item.quality + 1 # Aged Brie stops here - only increases by one per run
-      if item.name == "Backstage passes to a TAFKAL80ETC concert"
+      if item.sell_in < 11 && item.name == "Backstage passes to a TAFKAL80ETC concert"
         return backstage_item(item)
+      else
+        return item.quality += 1 # Aged Brie stops here - only increases by one per run
       end
   end
 
   def backstage_item(item)
-    if item.sell_in < 11
+    if item.sell_in < 6
+      return sell_in_five(item)
+    else
       return sell_in_ten(item)
-    end
+    end 
   end
 
   def sell_in_ten(item)
-    item = 22
+    return item.quality += 2
+  end
+
+  def sell_in_five(item)
+    return item.quality += 3
   end
 
   def update_quality1(item)

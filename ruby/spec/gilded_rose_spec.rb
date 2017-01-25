@@ -32,7 +32,6 @@ describe GildedRose do
     end
   end
 
-
   describe "#decrease_quality" do
     context "#lower_quality" do
       it "should decrease item quality" do
@@ -53,15 +52,20 @@ describe GildedRose do
 
       it "should return item quantity increased by 1 when item name is Backstage passes to a TAFKAL80ETC concert" do
         item = items[3]
-        expect(gildedrose.higher_quality(item)).to eq(21)
+        expect(gildedrose.update_quality(item)).to eq(21)
       end
     end
 
-      context "#backstage_item" do
-        it "should return item quanitity increased by 2 when Backstage and sell in is less than 11 days" do
-          item = items[4]
-          expect(gildedrose.sell_in_ten(item)).to eq(22)
-        end
+    context "#backstage_item" do
+      it "should return item quanitity increased by 2 when Backstage and sell in is less than 11 days" do
+        item = items[4]
+        expect(gildedrose.update_quality(item)).to eq(22)
       end
-    end 
+
+      it "should return item quanitity increased by 3 when Backstage and sell in is less than 6" do
+        item = items[5]
+        expect(gildedrose.update_quality(item)).to eq(23)
+      end
+    end
+  end
 end

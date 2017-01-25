@@ -12,7 +12,8 @@ describe GildedRose do
                  Item.new("Backstage passes to a TAFKAL80ETC concert", 9, 20),
                  Item.new("Backstage passes to a TAFKAL80ETC concert", 5, 20),
                  Item.new("Sulfuras, Hand of Ragnaros", 0, 20),
-                 Item.new("popcorn", 0, 10)
+                 Item.new("popcorn", 0, 10),
+                 Item.new("pies", 0, 0),
                  ] }
 
   describe '#item' do
@@ -92,6 +93,12 @@ describe GildedRose do
       item = items[7]
       gildedrose.quality_dividing_items(item)
       expect(item.quality).to eq(8)
+    end
+
+    it "should note decrease product quality if sell_in is 0 and quality is 0" do
+      item = items[8]
+      gildedrose.quality_dividing_items(item)
+      expect(item.quality).to eq(0)
     end
   end
 end

@@ -32,8 +32,10 @@ class GildedRose
   end
 
   def decrease_sell_in(item)
-      item.quality -= 1
-      return update_quality(item)
+      if item.quality > 0
+        item.quality -= 1
+        return update_quality(item)
+      end 
   end
 
   def update_quality(item)

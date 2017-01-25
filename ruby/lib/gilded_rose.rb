@@ -11,7 +11,7 @@ class GildedRose
   end
 
   def update_quality(item)
-    if item.name != "Aged Brie" and item.name != "Backstage passes to a TAFKAL80ETC concert"
+    if item.name == "Aged Brie" and item.name == "Backstage passes to a TAFKAL80ETC concert"
       return increase_quality(item)
     else
       return decrease_quality(item)
@@ -23,7 +23,15 @@ class GildedRose
   end
 
   def decrease_quality(item)
-    return item
+    if item.quality > 0
+      return has_quality(item)
+    end
+  end
+
+  def has_quality(item)
+    if item.name != "Sulfuras, Hand of Ragnaros"
+      return item.quality = item.quality - 1
+    end
   end
 
 

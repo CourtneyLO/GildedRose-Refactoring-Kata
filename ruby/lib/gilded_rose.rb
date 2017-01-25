@@ -6,12 +6,12 @@ class GildedRose
 
   def split_items
     @items.each do |item|
-      return update_quality(item)
+      update_quality(item)
     end
   end
 
   def update_quality(item)
-    if item.name == "Aged Brie" and item.name == "Backstage passes to a TAFKAL80ETC concert"
+    if item.name == "Aged Brie" || item.name == "Backstage passes to a TAFKAL80ETC concert"
       return increase_quality(item)
     else
       return decrease_quality(item)
@@ -19,15 +19,14 @@ class GildedRose
   end
 
   def increase_quality(item) # quality can only increase if quality more than 50
-    return item
+    return higher_quality(item) 
   end
 
   def decrease_quality(item) # quality can only decrease if quality is above 0
-    raise "Quality cannot be decreased: quality of items cannot be negavtive" unless item.quality > 0
-    return new_quality(item)
+    return less_quality(item) if item.quality > 0
   end
 
-  def new_quality(item)
+  def less_quality(item)
     if item.name != "Sulfuras, Hand of Ragnaros"
       return item.quality = item.quality - 1
     end
@@ -57,6 +56,10 @@ class GildedRose
           end
         end
       end
+
+
+
+
       if item.name != "Sulfuras, Hand of Ragnaros"
         item.sell_in = item.sell_in - 1
       end

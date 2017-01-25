@@ -5,11 +5,12 @@ describe GildedRose do
 
   subject(:gildedrose) { described_class.new(items) }
 
-  let(:items) { [Item.new("foo", 0, 10), Item.new("Aged Brie", 1, 20), Item.new("Aged Brie", 1, 0)] }
+  let(:items) { [Item.new("foo", 0, 10), Item.new("Aged Brie", 1, 0), Item.new("Apples", 1, 0), Item.new("Aged Brie", 1, 50)] }
 
   describe '#item' do
     it "should return the quality of the item" do
-      expect(items[1].quality).to eq(20)
+      expect(items[1].quality).to eq(0)
+      expect(items[1].name).to eq("Aged Brie")
     end
   end
 
@@ -29,13 +30,6 @@ describe GildedRose do
     end
   end
 
-  describe "#decrease_quality" do
-    it "should raise an error that quality can not be decreased as it is already too low" do
-      item = items[2]
-      gildedrose.split_items
-      expect{gildedrose.decrease_quality(item)}.to raise_error("Quality cannot be decreased: quality of items cannot be negavtive")
-    end
-  end
-
+  describe ""
 
 end

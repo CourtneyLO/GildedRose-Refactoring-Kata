@@ -1,16 +1,22 @@
-require 'spec_helper'
+require_relative 'spec_helper'
 
 
 describe GildedRose do
 
   subject(:gildedrose) { described_class.new(items) }
 
-  let(:items) { [Item.new("foo", 0, 0)] }
+  let(:items) { [Item.new("foo", 0, 1), Item.new("Aged Brie", 0, 1) ] }
 
-  describe "#update_quality" do
-    it "does not change the name" do
-      expect(items[0].name).to eq "foo"
+
+  describe "#split_items" do
+    it "should separate the items list into single items" do
+      item = items[0]
+      expect(gildedrose.split_items).to eq(gildedrose.update_quality(item))
     end
+  end
+
+
+
   end
 
 end

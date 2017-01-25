@@ -40,7 +40,13 @@ class GildedRose
   end
 
   def backstage_item(item)
-    return item.quality
+    if item.sell_in < 11
+      return sell_in_ten(item)
+    end
+  end
+
+  def sell_in_ten(item)
+    item = 22
   end
 
   def update_quality1(item)

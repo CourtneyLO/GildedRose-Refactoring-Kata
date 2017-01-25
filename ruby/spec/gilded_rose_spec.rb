@@ -9,7 +9,8 @@ describe GildedRose do
                  Item.new("Apples", 1, 0),
                  Item.new("Aged Brie", 1, 0),
                  Item.new("Backstage passes to a TAFKAL80ETC concert", 12, 20),
-                 Item.new("Backstage passes to a TAFKAL80ETC concert", 10, 20)
+                 Item.new("Backstage passes to a TAFKAL80ETC concert", 9, 20),
+                 Item.new("Backstage passes to a TAFKAL80ETC concert", 5, 20)
                  ] }
 
   describe '#item' do
@@ -56,6 +57,11 @@ describe GildedRose do
       end
     end
 
-  end
-
+      context "#backstage_item" do
+        it "should return item quanitity increased by 2 when Backstage and sell in is less than 11 days" do
+          item = items[4]
+          expect(gildedrose.sell_in_ten(item)).to eq(22)
+        end
+      end
+    end 
 end
